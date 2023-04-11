@@ -21,7 +21,8 @@ public class PatientController {
     public String getAllPatients(Model model, @RequestParam(value = "p",defaultValue ="0") int page,@RequestParam(value = "s",defaultValue = "4") int size){
         Page<Patient> patientPage=patientRepo.findAll(PageRequest.of(page,size));
         model.addAttribute("patientsList",patientPage.getContent());
-
+        model.addAttribute("pages",new int[patientPage.getTotalPages()]);
+        model.addAttribute("currentPage",page);
         return "patients";
     }
 

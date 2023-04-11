@@ -18,9 +18,13 @@
                 <td th:text="${p.birthDate}"></td>
                 <td th:text="${p.sick}"></td>
                 <td th:text="${p.score}"></td>
-
             </tr>
         </table>
+        <ul class="nav nav-pills">
+            <li th:each="page,status:${pages}">
+                <a th:href="@{/index(p=${status.index})}" th:class="${status.index==currentPage?'btn btn-danger ms-1':'btn btn-outline-danger ms-1'}" th:text="${status.index}"></a>
+            </li>
+        </ul>
     </div>
 </body>
 </html>
