@@ -15,7 +15,7 @@
         </form>
         <table class="table" >
             <tr>
-                <th>Id</th> <th>Name</th> <th>BirthDay</th> <th>Sick</th> <th>Score</th>
+                <th>Id</th> <th>Name</th> <th>BirthDay</th> <th>Sick</th> <th>Score</th> <th>Delete/Update</th>
             </tr>
             <tr th:each="p:${patientsList}">
                 <td th:text="${p.id}"></td>
@@ -23,6 +23,7 @@
                 <td th:text="${p.birthDate}"></td>
                 <td th:text="${p.sick}"></td>
                 <td th:text="${p.score}"></td>
+                <td ><a class="btn btn-danger" th:href="@{index(id=${p.id})}">Delete</a></td>
             </tr>
         </table>
         <ul class="nav nav-pills">
