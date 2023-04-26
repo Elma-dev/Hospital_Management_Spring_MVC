@@ -10,7 +10,7 @@
         <h3 class="text-center text-danger">Patients List</h3>
         <form method="get">
             <label class="form-label">Name</label>
-            <input type="text" name="keyWord" >
+            <input th:value="${keyWord}" type="text" name="keyWord" >
             <input type="submit" class="btn btn-success">
         </form>
         <table class="table" >
@@ -27,7 +27,7 @@
         </table>
         <ul class="nav nav-pills">
             <li th:each="page,status:${pages}">
-                <a th:href="@{/index(p=${status.index})}" th:class="${status.index==currentPage?'btn btn-danger ms-1':'btn btn-outline-danger ms-1'}" th:text="${status.index}"></a>
+                <a th:href="@{index(p=${status.index},keyWord=${keyWord})}" th:class="${status.index==currentPage?'btn btn-danger ms-1':'btn btn-outline-danger ms-1'}" th:text="${status.index}"></a>
             </li>
         </ul>
     </div>
