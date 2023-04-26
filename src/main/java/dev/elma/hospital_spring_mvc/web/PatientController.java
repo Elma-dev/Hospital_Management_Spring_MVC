@@ -18,8 +18,8 @@ import java.util.List;
 public class PatientController {
     private PatientRepo patientRepo;
     @GetMapping("/index")
-    public String getAllPatients(Model model, @RequestParam(value = "p",defaultValue ="0") int page,@RequestParam(value = "s",defaultValue = "4") int size){
-        Page<Patient> patientPage=patientRepo.findAll(PageRequest.of(page,size));
+    public String getAllPatients(Model model, @RequestParam(name = "p",defaultValue ="0") int page,@RequestParam(name = "s",defaultValue = "4") int size,@RequestParam(name = "keyWord",defaultValue = "") String keyWord){
+        Page<Patient> patientPage=patientRepo.findPatientByNameContains(keyWord,PageRequest.of(page,size));
         model.addAttribute("patientsList",patientPage.getContent());
         model.addAttribute("pages",new int[patientPage.getTotalPages()]);
         model.addAttribute("currentPage",page);
