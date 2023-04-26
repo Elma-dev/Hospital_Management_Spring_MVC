@@ -22,7 +22,7 @@ public class HospitalSpringMvcApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         for (int i = 0; i <10 ; i++) {
-            patientRepo.save(new Patient(null,"patient"+(i+1),new Date(),(int)Math.random()*100,false));
+            patientRepo.save(new Patient(null,"patient"+(i+1),new Date(),(int)(Math.random()*100),false));
         }
     }
 }
