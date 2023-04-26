@@ -18,13 +18,22 @@ import java.util.List;
 public class PatientController {
     private PatientRepo patientRepo;
     @GetMapping("/index")
-    public String getAllPatients(Model model, @RequestParam(name = "p",defaultValue ="0") int page,@RequestParam(name = "s",defaultValue = "4") int size,@RequestParam(name = "keyWord",defaultValue = "") String keyWord){
+    public String getAllPatients(Model model, @RequestParam(name = "p",defaultValue ="0") int page
+            ,@RequestParam(name = "s",defaultValue = "4") int size
+            ,@RequestParam(name = "keyWord",defaultValue = "") String keyWord){
         Page<Patient> patientPage=patientRepo.findPatientByNameContains(keyWord,PageRequest.of(page,size));
         model.addAttribute("patientsList",patientPage.getContent());
         model.addAttribute("pages",new int[patientPage.getTotalPages()]);
         model.addAttribute("currentPage",page);
         model.addAttribute("keyWord",keyWord);
         return "patients";
+    }
+
+    @GetMapping("/delete")
+    public String deletePatient(Model model,@RequestParam(name="id") Long id){
+        patientRepo.deleteById(id);
+        //return getAllPatients(model,0,4,"");
+        return "redirect:/index";
     }
 
 }
